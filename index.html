@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChronoKart - Premium Watch Marketplace | 20 Trending Watches</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Ambient Background Dynamic Elements -->
+  <div class="ambient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Flipkart Style Top Navigation Bar -->
+  <header class="fk-header">
+    <div class="header-container">
+      <!-- Unique Brand Logo -->
+      <div class="logo-box">
+        <a href="#" class="logo-link">
+          <span class="logo-text"><i class="fa-solid fa-stopwatch brand-icon"></i> Chrono<span class="logo-accent">Kart</span></span>
+          <span class="logo-sub">Explore <span class="plus-text">Luxe</span> <i class="fa-solid fa-gem plus-icon"></i></span>
+        </a>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search for watches, brands (Titan, Casio, Apple, Fossil) and more..." 
+          autocomplete="off"
+        />
+        <button id="clearSearchBtn" class="clear-search hidden" title="Clear">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Header Action Items -->
+      <div class="header-actions">
+        <button class="fk-btn-login" id="loginBtn">
+          <i class="fa-regular fa-user"></i>
+          <span>Login</span>
+        </button>
+
+        <button class="action-item wishlist-trigger" id="wishlistBtn" title="Wishlist">
+          <div class="icon-wrap">
+            <i class="fa-regular fa-heart"></i>
+            <span class="badge" id="wishlistCount">0</span>
+          </div>
+          <span class="action-label">Wishlist</span>
+        </button>
+
+        <button class="action-item cart-trigger" id="cartBtn" title="Cart">
+          <div class="icon-wrap">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge" id="cartCount">0</span>
+          </div>
+          <span class="action-label">Cart</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <!-- Hero Banner with Beautiful Gradient Glass Card -->
+    <section class="hero-banner">
+      <div class="banner-content">
+        <div class="banner-tag">
+          <i class="fa-solid fa-bolt"></i> CHRONOKART GRAND GALA FESTIVAL
+        </div>
+        <h1 class="banner-title">
+          Timeless Elegance, <span class="gradient-text">Next-Gen Tech</span>
+        </h1>
+        <p class="banner-desc">
+          Discover 20 exclusive premium wristwatches from top brands. From rugged smartwatches to Swiss luxury chronographs, get up to <strong>75% Off</strong> today!
+        </p>
+        <div class="banner-perks">
+          <div class="perk"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Brand Warranty</div>
+          <div class="perk"><i class="fa-solid fa-truck-fast"></i> Free Next-Day Delivery</div>
+          <div class="perk"><i class="fa-solid fa-arrow-rotate-left"></i> 7-Day Easy Replacement</div>
+        </div>
+      </div>
+      <div class="banner-art">
+        <div class="floating-badge">
+          <i class="fa-solid fa-fire"></i> Flat 60% OFF
+        </div>
+        <img 
+          src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80" 
+          alt="Hero Luxury Watch" 
+          class="banner-hero-img"
+        />
+      </div>
+    </section>
+
+    <!-- Filter & Category Strip -->
+    <section class="controls-section">
+      <div class="categories-bar" id="categoryPills">
+        <button class="cat-pill active" data-category="all">
+          <i class="fa-solid fa-border-all"></i> All Watches (20)
+        </button>
+        <button class="cat-pill" data-category="smartwatch">
+          <i class="fa-solid fa-microchip"></i> Smartwatches
+        </button>
+        <button class="cat-pill" data-category="luxury">
+          <i class="fa-solid fa-crown"></i> Luxury & Chrono
+        </button>
+        <button class="cat-pill" data-category="analog">
+          <i class="fa-regular fa-clock"></i> Classic Analog
+        </button>
+        <button class="cat-pill" data-category="sports">
+          <i class="fa-solid fa-person-running"></i> Sports & Rugged
+        </button>
+      </div>
+
+      <div class="sort-and-stats">
+        <div class="stats-count">
+          Showing <span id="displayedCount">20</span> of 20 Watches
+        </div>
+        <div class="sort-box">
+          <label for="sortSelect"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort By:</label>
+          <select id="sortSelect">
+            <option value="popular">Popularity</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Customer Rating</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 Watches Showcase Grid -->
+    <section class="products-container">
+      <div class="products-grid" id="productsGrid">
+        <!-- Products dynamically rendered by script.js -->
+      </div>
+
+      <!-- Empty State when filter yields 0 matches -->
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-icon"><i class="fa-regular fa-face-frown"></i></div>
+        <h3>No matching watches found</h3>
+        <p>Try searching for another brand or resetting your category filter.</p>
+        <button class="btn-reset-filters" id="resetFiltersBtn">View All 20 Watches</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-out Shopping Cart Drawer -->
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <div class="cart-title">
+        <i class="fa-solid fa-bag-shopping"></i> My Shopping Bag (<span id="cartDrawerCount">0</span>)
+      </div>
+      <button class="btn-close-cart" id="closeCartBtn" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cartItemsList">
+      <!-- Cart items injected dynamically -->
+    </div>
+
+    <div class="cart-footer" id="cartFooter">
+      <div class="price-breakdown">
+        <div class="price-row">
+          <span>Total MRP:</span>
+          <span id="cartTotalMRP">₹0</span>
+        </div>
+        <div class="price-row discount-row">
+          <span>Bag Discount:</span>
+          <span id="cartTotalDiscount">-₹0</span>
+        </div>
+        <div class="price-row">
+          <span>Delivery Fee:</span>
+          <span class="free-tag">FREE</span>
+        </div>
+        <div class="price-row final-total">
+          <span>Total Amount:</span>
+          <span id="cartFinalTotal">₹0</span>
+        </div>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn">
+        <i class="fa-solid fa-lock"></i> PLACE ORDER NOW
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       REALISTIC PAYMENT GATEWAY MODAL (PhonePe, Cards, Net Banking, COD)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="paymentModal">
+    <div class="payment-modal-card">
+      <!-- Modal Header -->
+      <div class="pay-header">
+        <div class="pay-brand">
+          <i class="fa-solid fa-shield-halved security-icon"></i>
+          <div>
+            <div class="pay-brand-title">ChronoKart Secure Gateway</div>
+            <div class="pay-brand-sub"><i class="fa-solid fa-lock"></i> 256-Bit Bank Grade SSL Encryption</div>
+          </div>
+        </div>
+        <div class="pay-amount-box">
+          <span class="pay-amt-label">Total Payable:</span>
+          <span class="pay-amt-val" id="payModalAmount">₹0</span>
+        </div>
+        <button class="pay-close-btn" id="closePaymentModalBtn" aria-label="Close payment">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Address Bar -->
+      <div class="pay-address-bar">
+        <div class="addr-info">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <span class="addr-name">Deliver to: <strong>Deepak</strong>, 600001</span>
+            <span class="addr-detail">#42, Grand Avenue, Anna Nagar, Chennai, Tamil Nadu</span>
+          </div>
+        </div>
+        <span class="addr-change-badge">Change</span>
+      </div>
+
+      <!-- Main Payment Body: Sidebar Tabs + Content Panel -->
+      <div class="pay-container">
+        <!-- Sidebar Methods -->
+        <aside class="pay-methods-list" id="payMethodsList">
+          <!-- PhonePe / UPI -->
+          <div class="pay-tab active" data-method="phonepe">
+            <div class="tab-icon phonepe-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div class="tab-text">
+              <span class="tab-title">PhonePe / UPI</span>
+              <span class="tab-badge">Instant ✦ Offer</span>
+            </div>
+            <i class="fa-solid fa-chevron-right tab-arrow"></i>
+          </div>
+
+          <!-- Cards -->
+          <div class="pay-tab" data-method="card">
+            <div class="tab-icon card-icon"><i class="fa-regular fa-credit-card"></i></div>
+            <div class="tab-text">
+              <span class="tab-title">Credit / Debit Card</span>
+              <span class="tab-desc">Visa, MasterCard, RuPay</span>
+            </div>
+            <i class="fa-solid fa-chevron-right tab-arrow"></i>
+          </div>
+
+          <!-- Net Banking -->
+          <div class="pay-tab" data-method="netbanking">
+            <div class="tab-icon bank-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div class="tab-text">
+              <span class="tab-title">Net Banking</span>
+              <span class="tab-desc">All Major Indian Banks</span>
+            </div>
+            <i class="fa-solid fa-chevron-right tab-arrow"></i>
+          </div>
+
+          <!-- Cash on Delivery -->
+          <div class="pay-tab" data-method="cod">
+            <div class="tab-icon cod-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div class="tab-text">
+              <span class="tab-title">Cash on Delivery</span>
+              <span class="tab-desc">Pay upon delivery</span>
+            </div>
+            <i class="fa-solid fa-chevron-right tab-arrow"></i>
+          </div>
+        </aside>
+
+        <!-- Dynamic Content Panels -->
+        <div class="pay-content-panel">
+          <!-- 1. PhonePe / UPI Panel -->
+          <div class="pay-panel active" id="panelPhonepe">
+            <div class="phonepe-box">
+              <div class="phonepe-header">
+                <div class="phonepe-logo-wrap">
+                  <span class="pp-badge">PhonePe</span>
+                  <span class="upi-badge">UPI</span>
+                </div>
+                <div class="qr-timer">
+                  <i class="fa-regular fa-clock"></i> Expires in: <strong id="qrTimer">04:59</strong>
+                </div>
+              </div>
+
+              <div class="phonepe-split">
+                <!-- Left: Dynamic QR Code -->
+                <div class="qr-col">
+                  <div class="qr-frame">
+                    <img 
+                      id="phonepeQrImg"
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=chronokart@ybl&pn=ChronoKart%20Store&cu=INR" 
+                      alt="PhonePe UPI QR Code"
+                      class="qr-code-img"
+                    />
+                    <div class="qr-scan-badge">
+                      <i class="fa-solid fa-qrcode"></i> Scan with any UPI App
+                    </div>
+                  </div>
+                  <p class="qr-inst">Scan using PhonePe, Google Pay, Paytm, or BHIM</p>
+                </div>
+
+                <!-- Right: UPI ID Direct Input -->
+                <div class="upi-id-col">
+                  <h4>Or Enter Your UPI ID / VPA</h4>
+                  <div class="upi-input-group">
+                    <input type="text" id="upiIdInput" placeholder="e.g. yourname@ybl / 9876543210@ibl" />
+                    <button type="button" class="btn-verify-upi" id="btnVerifyUpi">Verify</button>
+                  </div>
+                  <div class="upi-suggest-pills" id="upiPills">
+                    <span class="upi-pill" data-suffix="@ybl">@ybl</span>
+                    <span class="upi-pill" data-suffix="@ibl">@ibl</span>
+                    <span class="upi-pill" data-suffix="@axl">@axl</span>
+                    <span class="upi-pill" data-suffix="@okhdfcbank">@okhdfcbank</span>
+                    <span class="upi-pill" data-suffix="@paytm">@paytm</span>
+                  </div>
+
+                  <div class="phonepe-perk">
+                    <i class="fa-solid fa-circle-check"></i> Eligible for flat ₹150 Cashback via PhonePe UPI!
+                  </div>
+
+                  <button class="btn-pay-now btn-pay-phonepe" id="btnPayPhonepe">
+                    <i class="fa-solid fa-lock"></i> Pay <span class="pay-btn-amt">₹0</span> via PhonePe
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Credit / Debit Card Panel -->
+          <div class="pay-panel" id="panelCard">
+            <!-- Interactive Virtual Credit Card -->
+            <div class="virtual-card-wrap">
+              <div class="virtual-card" id="virtualCard">
+                <div class="vcard-top">
+                  <div class="vcard-chip">
+                    <i class="fa-solid fa-microchip"></i>
+                  </div>
+                  <div class="vcard-type-icon" id="vcardTypeIcon">
+                    <i class="fa-brands fa-cc-visa"></i>
+                  </div>
+                </div>
+                <div class="vcard-number" id="vcardNumberDisplay">
+                  •••• •••• •••• ••••
+                </div>
+                <div class="vcard-bottom">
+                  <div class="vcard-holder">
+                    <span class="vcard-label">CARD HOLDER</span>
+                    <span class="vcard-name" id="vcardNameDisplay">DEEPAK KUMAR</span>
+                  </div>
+                  <div class="vcard-expiry">
+                    <span class="vcard-label">EXPIRES</span>
+                    <span class="vcard-exp" id="vcardExpDisplay">MM/YY</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Form Fields -->
+            <form id="cardPaymentForm" class="card-form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="cardNumberInput">Card Number</label>
+                <div class="input-with-icon">
+                  <i class="fa-regular fa-credit-card input-icon"></i>
+                  <input 
+                    type="text" 
+                    id="cardNumberInput" 
+                    placeholder="4532 8200 1234 5678" 
+                    maxlength="19" 
+                    autocomplete="off"
+                  />
+                  <span class="card-network-badge" id="cardNetworkBadge">VISA</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cardHolderInput">Name on Card</label>
+                <input 
+                  type="text" 
+                  id="cardHolderInput" 
+                  placeholder="DEEPAK KUMAR" 
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="form-row-split">
+                <div class="form-group">
+                  <label for="cardExpiryInput">Valid Thru (MM/YY)</label>
+                  <input 
+                    type="text" 
+                    id="cardExpiryInput" 
+                    placeholder="08/29" 
+                    maxlength="5" 
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cardCvvInput">
+                    CVV / CVC
+                    <i class="fa-solid fa-circle-question cvv-help" title="3 digits on back of card"></i>
+                  </label>
+                  <input 
+                    type="password" 
+                    id="cardCvvInput" 
+                    placeholder="•••" 
+                    maxlength="3" 
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="save-card-check">
+                <input type="checkbox" id="saveCardCheck" checked />
+                <label for="saveCardCheck">Securely save card as per RBI tokenization guidelines</label>
+              </div>
+
+              <button class="btn-pay-now btn-pay-card" id="btnPayCard">
+                <i class="fa-solid fa-lock"></i> Pay <span class="pay-btn-amt">₹0</span> Securely
+              </button>
+            </form>
+          </div>
+
+          <!-- 3. Net Banking Panel -->
+          <div class="pay-panel" id="panelNetbanking">
+            <h4 class="nb-heading">Select Popular Bank</h4>
+            <div class="banks-grid" id="banksGrid">
+              <div class="bank-card active" data-bank="State Bank of India">
+                <div class="bank-avatar sbi-avatar"><i class="fa-solid fa-landmark"></i></div>
+                <span class="bank-name">State Bank of India</span>
+                <i class="fa-solid fa-circle-check bank-check"></i>
+              </div>
+              <div class="bank-card" data-bank="HDFC Bank">
+                <div class="bank-avatar hdfc-avatar"><i class="fa-solid fa-building-columns"></i></div>
+                <span class="bank-name">HDFC Bank</span>
+                <i class="fa-solid fa-circle-check bank-check"></i>
+              </div>
+              <div class="bank-card" data-bank="ICICI Bank">
+                <div class="bank-avatar icici-avatar"><i class="fa-solid fa-vault"></i></div>
+                <span class="bank-name">ICICI Bank</span>
+                <i class="fa-solid fa-circle-check bank-check"></i>
+              </div>
+              <div class="bank-card" data-bank="Axis Bank">
+                <div class="bank-avatar axis-avatar"><i class="fa-solid fa-piggy-bank"></i></div>
+                <span class="bank-name">Axis Bank</span>
+                <i class="fa-solid fa-circle-check bank-check"></i>
+              </div>
+              <div class="bank-card" data-bank="Kotak Mahindra">
+                <div class="bank-avatar kotak-avatar"><i class="fa-solid fa-shield-halved"></i></div>
+                <span class="bank-name">Kotak Mahindra</span>
+                <i class="fa-solid fa-circle-check bank-check"></i>
+              </div>
+              <div class="bank-card" data-bank="Punjab National Bank">
+                <div class="bank-avatar pnb-avatar"><i class="fa-solid fa-landmark-dome"></i></div>
+                <span class="bank-name">Punjab National Bank</span>
+                <i class="fa-solid fa-circle-check bank-check"></i>
+              </div>
+            </div>
+
+            <div class="all-banks-row">
+              <label for="otherBanksSelect">Or select from other 50+ Scheduled Banks:</label>
+              <select id="otherBanksSelect">
+                <option value="">-- Choose your Bank --</option>
+                <option value="Bank of Baroda">Bank of Baroda</option>
+                <option value="Canara Bank">Canara Bank</option>
+                <option value="Union Bank of India">Union Bank of India</option>
+                <option value="IndusInd Bank">IndusInd Bank</option>
+                <option value="IDBI Bank">IDBI Bank</option>
+                <option value="Yes Bank">Yes Bank</option>
+                <option value="Federal Bank">Federal Bank</option>
+              </select>
+            </div>
+
+            <button class="btn-pay-now btn-pay-nb" id="btnPayNetbanking">
+              <i class="fa-solid fa-lock"></i> Proceed to <span id="selectedBankLabel">State Bank of India</span>
+            </button>
+          </div>
+
+          <!-- 4. Cash on Delivery Panel -->
+          <div class="pay-panel" id="panelCod">
+            <div class="cod-box">
+              <div class="cod-icon-wrap">
+                <i class="fa-solid fa-handshake-angle"></i>
+              </div>
+              <h4>Cash on Delivery</h4>
+              <p>Pay cash or scan dynamic QR upon doorstep delivery. Fast, reliable & convenient.</p>
+              
+              <div class="captcha-box">
+                <div class="captcha-display" id="captchaCode">7 4 9</div>
+                <input type="text" id="captchaInput" placeholder="Enter Captcha" maxlength="3" />
+                <button type="button" class="btn-reload-captcha" id="reloadCaptchaBtn" title="New Code">
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+
+              <button class="btn-pay-now btn-pay-cod" id="btnPayCod">
+                Confirm Cash on Delivery Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Processing Spinner Overlay -->
+  <div class="proc-overlay" id="procOverlay">
+    <div class="proc-card">
+      <div class="proc-spinner"></div>
+      <h3 id="procTitle">Connecting to Payment Gateway...</h3>
+      <p id="procSub">Verifying 256-bit SSL encrypted connection. Please do not refresh or press back.</p>
+      <div class="proc-badges">
+        <span><i class="fa-solid fa-shield"></i> PCI-DSS Compliant</span>
+        <span><i class="fa-solid fa-lock"></i> Verified by Visa / RuPay / PhonePe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simulated Bank OTP Modal -->
+  <div class="modal-backdrop" id="otpModal">
+    <div class="otp-card">
+      <div class="otp-header">
+        <div class="otp-bank-badge">
+          <i class="fa-solid fa-building-columns"></i> <span id="otpBankName">Bank 3D Secure</span>
+        </div>
+        <button class="otp-close" id="closeOtpBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="otp-body">
+        <div class="otp-icon-wrap">
+          <i class="fa-solid fa-comment-sms"></i>
+        </div>
+        <h3>Enter One Time Password (OTP)</h3>
+        <p>An authentication code has been sent to your registered mobile ending with <strong>••••••9821</strong></p>
+        
+        <div class="otp-inputs-row">
+          <input type="text" maxlength="1" class="otp-digit" value="8" />
+          <input type="text" maxlength="1" class="otp-digit" value="4" />
+          <input type="text" maxlength="1" class="otp-digit" value="2" />
+          <input type="text" maxlength="1" class="otp-digit" value="1" />
+          <input type="text" maxlength="1" class="otp-digit" value="9" />
+          <input type="text" maxlength="1" class="otp-digit" value="5" />
+        </div>
+
+        <div class="otp-timer-row">
+          <span>Resend OTP in <strong id="otpResendTimer">00:45</strong></span>
+        </div>
+
+        <button class="btn-confirm-otp" id="btnConfirmOtp">
+          <i class="fa-solid fa-circle-check"></i> VERIFY & COMPLETE PAYMENT
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Push Notification Simulation (Bank SMS) -->
+  <div class="bank-sms-toast" id="bankSmsToast">
+    <div class="sms-icon"><i class="fa-solid fa-comment-sms"></i></div>
+    <div class="sms-content">
+      <div class="sms-sender">HDFC BANK / SBI-ALERT • Just Now</div>
+      <div class="sms-body" id="smsBodyText">
+        Rs. 2,999.00 debited from A/c ••••4092 on 08-Sep-26 to ChronoKart. UPI Ref: 42981048291. Avl Bal: Rs 48,250.00
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Realistic Order Confirmed & Amount Sent Modal -->
+  <div class="modal-backdrop" id="successModal">
+    <div class="success-card realistic-confirm-card">
+      <!-- Animated Ripple Pulse Checkmark (PhonePe / GPay style) -->
+      <div class="amount-sent-badge">
+        <div class="ripple-ring ring-1"></div>
+        <div class="ripple-ring ring-2"></div>
+        <div class="success-check-circle">
+          <i class="fa-solid fa-check"></i>
+        </div>
+      </div>
+
+      <div class="confirm-head">
+        <span class="paid-success-tag"><i class="fa-solid fa-circle-check"></i> AMOUNT TRANSFERRED SUCCESSFULLY</span>
+        <div class="paid-large-amount" id="paidLargeAmount">₹0.00</div>
+        <div class="paid-to-merchant">
+          Paid to: <strong>ChronoKart Official Marketplace</strong>
+        </div>
+        <div class="paid-timestamp" id="paidTimestamp">08 Sep 2026, 02:58 PM</div>
+      </div>
+
+      <!-- Bank & Transaction Card -->
+      <div class="bank-transfer-box">
+        <div class="bank-transfer-row">
+          <div class="bt-label"><i class="fa-solid fa-building-columns"></i> Debited From:</div>
+          <div class="bt-val" id="debitedFromText">State Bank of India •••• 4092</div>
+        </div>
+        <div class="bank-transfer-row">
+          <div class="bt-label"><i class="fa-solid fa-receipt"></i> Payment Mode:</div>
+          <div class="bt-val" id="receiptPayMode">PhonePe UPI</div>
+        </div>
+        <div class="bank-transfer-row">
+          <div class="bt-label"><i class="fa-solid fa-hashtag"></i> UPI / Bank UTR:</div>
+          <div class="bt-val highlight-mono" id="receiptTxnId">429810389142</div>
+        </div>
+        <div class="bank-transfer-row">
+          <div class="bt-label"><i class="fa-solid fa-box-archive"></i> Order Reference:</div>
+          <div class="bt-val highlight-order" id="receiptOrderId">CK-8392104</div>
+        </div>
+      </div>
+
+      <!-- Live Order Tracking Stepper -->
+      <div class="tracking-card">
+        <div class="tracking-title">
+          <i class="fa-solid fa-truck-fast"></i> Live Shipment Tracking
+        </div>
+        <div class="tracking-steps">
+          <div class="step completed">
+            <div class="step-dot"><i class="fa-solid fa-check"></i></div>
+            <div class="step-info">
+              <span class="step-name">Order Confirmed</span>
+              <span class="step-time">Just Now</span>
+            </div>
+          </div>
+          <div class="step in-progress">
+            <div class="step-dot"><i class="fa-solid fa-box"></i></div>
+            <div class="step-info">
+              <span class="step-name">Packaging at Hub</span>
+              <span class="step-time">Today, 5:00 PM</span>
+            </div>
+          </div>
+          <div class="step pending">
+            <div class="step-dot"><i class="fa-solid fa-truck"></i></div>
+            <div class="step-info">
+              <span class="step-name">Out for Delivery</span>
+              <span class="step-time">Tomorrow Morning</span>
+            </div>
+          </div>
+          <div class="step pending">
+            <div class="step-dot"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="step-info">
+              <span class="step-name">Doorstep Handover</span>
+              <span class="step-time" id="receiptDate">Tomorrow, by 2:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="success-actions">
+        <button class="btn-continue-shop" id="btnContinueShop">
+          <i class="fa-solid fa-bag-shopping"></i> Continue Shopping
+        </button>
+        <button class="btn-print-receipt" id="btnPrintReceipt">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Download Invoice
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Product Details Modal -->
+  <div class="modal-backdrop" id="quickViewModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- Modal content loaded via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="fk-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>ABOUT CHRONOKART</h4>
+        <p>India's premier curated marketplace for luxury, smartwatch, classic analog, and rugged sports timepieces with 100% brand authenticity guarantee.</p>
+      </div>
+      <div class="footer-col">
+        <h4>TOP BRANDS</h4>
+        <p>Titan • Casio • Apple • Fossil • Fastrack • Seiko • Tissot • Noise • Garmin • Timex</p>
+      </div>
+      <div class="footer-col">
+        <h4>CHRONO ASSURANCE</h4>
+        <p><i class="fa-solid fa-shield-halved"></i> 100% Original Brand Guarantee</p>
+        <p><i class="fa-solid fa-truck-fast"></i> Express Free Shipping on all 20 watches</p>
+        <p><i class="fa-solid fa-arrow-rotate-left"></i> 7 Days Hassle-Free Replacement Policy</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ChronoKart™ Timepieces. Crafted with dynamic ambient aesthetics.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
